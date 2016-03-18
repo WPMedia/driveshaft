@@ -12,7 +12,7 @@
     "builds": [
         {
             "notify": "driveshaft-dev", 
-            "branch": "master", 
+            "branch": "develop", 
             "version": "0.1.2", 
             "tags": ["latest"], 
             "autodeploy": true
