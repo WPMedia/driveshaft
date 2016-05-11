@@ -122,9 +122,9 @@ module Driveshaft
         export = {
           content_type: 'application/json; charset=utf-8',
           body: {
-            "message": "Error converting #{@file['title'] || @file['id']} into #{@export_format}. (#{e.message})",
-            "backtrace": e.backtrace.join("\n"),
-            "status": "error"
+            "message" => "Error converting #{@file['title'] || @file['id']} into #{@export_format}. (#{e.message})",
+            "backtrace" => e.backtrace.join("\n"),
+            "status" => "error"
           }
         }
       end
@@ -200,7 +200,8 @@ module Driveshaft
     def get_file!
       begin
         # Our before filter, variable set up
-        @key = params[:file]
+        @key  = params[:file]
+        @file = nil
 
         clients.each_with_index do |client, idx|
           file_body = client.execute(
@@ -210,6 +211,8 @@ module Driveshaft
           @file = JSON.load(file_body)
           break unless @file['error']
         end
+
+        raise "No clients able to access file #{@key}" if @file.nil?
 
         file_config = get_settings[@key] || {}
 
