@@ -11,18 +11,17 @@
     ],
     "builds": [
         {
-            "notify": "driveshaft-prod",
-            "branch": "master",
-            "version": "0.4.1",
-            "tags": ["latest"],
-            "autodeploy": false
-        },
-        {
             "notify": "driveshaft-dev",
             "branch": "develop",
             "version": "0.3.1",
             "tags": ["latest"],
             "autodeploy": true
+        },{
+            "notify": "driveshaft-prod",
+            "branch": "master",
+            "version": "0.4.1",
+            "tags": ["latest"],
+            "autodeploy": false
         }
     ],
     "stages": [
