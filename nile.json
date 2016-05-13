@@ -22,7 +22,7 @@
     "stages": [
         {
             "name": "dev",
-            "scale": 3,
+            "scale": 5,
             "domain": "driveshaft.wpit.nile.works",
             "environment": {
                 "GOOGLE_APICLIENT_SERVICEACCOUNT": "/usr/src/app/google.json",
