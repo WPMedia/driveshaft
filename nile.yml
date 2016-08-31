@@ -1,0 +1,51 @@
+name: driveshaft
+namespace: siteeng-lincoln
+environments:
+- name: staging
+  type: ecs
+  override:
+    services:
+      app:
+        ports:
+          - "8105:3000"
+        log_driver: awslogs
+        log_opt:
+          awslogs-group: /nile/siteeng-lincoln/driveshaft/staging
+          awslogs-region: us-east-1
+        environment:
+          GOOGLE_APICLIENT_SERVICEACCOUNT: '/usr/src/app/google.json'
+          OPENSSL_ENCRYPTION_PASSWORD: '%{CiClOegDKXvMQp4KMb/u0zAHKQbdhunasZFFLL8EnxA2MxKtAQEBAgB4pTnoAyl7zEKeCjG/7tMwBykG3Ybp2rGRRSy/BJ8QNjMAAACEMIGBBgkqhkiG9w0BBwagdDByAgEAMG0GCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQM3TAryTvsBdM+6p/RAgEQgECMn7iZ4cUoUjToopfF5vOTUZy65F59Q7krWi1omyFlQQvfGwsziiMITVqF72NIwBHTYuL364hOabslCdeI69u1}'
+  services:
+  - deploymentConfiguration:
+      maximumPercent: 200
+      minimumHealthyPercent: 50
+    desiredCount: 1
+    loadBalancers:
+    - containerName: app
+      containerPort: 3000
+      loadBalancerName: se-graphics-driveshaft-staging
+    serviceName: main
+- name: prod
+  type: ecs
+  override:
+    services:
+      app:
+        ports:
+          - "8106:3000"
+        log_driver: awslogs
+        log_opt:
+          awslogs-group: /nile/siteeng-lincoln/driveshaft/prod
+          awslogs-region: us-east-1
+        environment:
+          GOOGLE_APICLIENT_SERVICEACCOUNT: '/usr/src/app/google.json'
+          OPENSSL_ENCRYPTION_PASSWORD: '%{CiClOegDKXvMQp4KMb/u0zAHKQbdhunasZFFLL8EnxA2MxKtAQEBAgB4pTnoAyl7zEKeCjG/7tMwBykG3Ybp2rGRRSy/BJ8QNjMAAACEMIGBBgkqhkiG9w0BBwagdDByAgEAMG0GCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQM3TAryTvsBdM+6p/RAgEQgECMn7iZ4cUoUjToopfF5vOTUZy65F59Q7krWi1omyFlQQvfGwsziiMITVqF72NIwBHTYuL364hOabslCdeI69u1}'
+  services:
+  - deploymentConfiguration:
+      maximumPercent: 200
+      minimumHealthyPercent: 50
+    desiredCount: 5
+    loadBalancers:
+    - containerName: app
+      containerPort: 3000
+      loadBalancerName: se-graphics-driveshaft-prod
+    serviceName: main
