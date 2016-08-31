@@ -43,7 +43,7 @@ environments:
   - deploymentConfiguration:
       maximumPercent: 200
       minimumHealthyPercent: 50
-    desiredCount: 5
+    desiredCount: 3
     loadBalancers:
     - containerName: app
       containerPort: 3000
