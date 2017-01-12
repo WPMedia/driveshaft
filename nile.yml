@@ -19,10 +19,7 @@ environments:
             awslogs-group: /nile/siteeng-lincoln/driveshaft/staging
             awslogs-region: us-east-1
     services:
-      - deploymentConfiguration:
-          maximumPercent: 200
-          minimumHealthyPercent: 50
-        desiredCount: 1
+      - desiredCount: 1
         loadBalancers:
           - containerName: app
             containerPort: 3000
@@ -43,10 +40,7 @@ environments:
             awslogs-group: /nile/siteeng-lincoln/driveshaft/prod
             awslogs-region: us-east-1
     services:
-      - deploymentConfiguration:
-          maximumPercent: 200
-          minimumHealthyPercent: 50
-        desiredCount: 2
+      - desiredCount: 2
         loadBalancers:
           - containerName: app
             containerPort: 3000
