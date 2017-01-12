@@ -12,7 +12,7 @@ environments:
           parent_domain: wpit.nile.works
           certificate: arn:aws:iam::766513428554:server-certificate/star.wpit.nile.works_4-3-2018
         healthcheck:
-          path: '/health'
+          path: "/health"
     override:
       services:
         app:
@@ -35,7 +35,7 @@ environments:
           parent_domain: wpit.nile.works
           certificate: arn:aws:iam::766513428554:server-certificate/star.wpit.nile.works_4-3-2018
         healthcheck:
-          path: '/health'
+          path: "/health"
     override:
       services:
         app:
