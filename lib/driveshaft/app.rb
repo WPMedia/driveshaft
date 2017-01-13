@@ -58,7 +58,6 @@ module Driveshaft
     get '/health' do
       status 200
       body 'Healthy!'
-      return erb :healthy
     end
 
     get '/:file/?' do
