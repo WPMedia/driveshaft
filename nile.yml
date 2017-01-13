@@ -13,6 +13,8 @@ environments:
           certificate: arn:aws:iam::766513428554:server-certificate/star.wpit.nile.works_4-3-2018
         healthcheck:
           path: "/health"
+          timeout: 10s
+          unhealthy_threshold: 3
     override:
       services:
         app:
@@ -36,6 +38,8 @@ environments:
           certificate: arn:aws:iam::766513428554:server-certificate/star.wpit.nile.works_4-3-2018
         healthcheck:
           path: "/health"
+          timeout: 10s
+          unhealthy_threshold: 3
     override:
       services:
         app:
