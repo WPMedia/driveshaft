@@ -19,6 +19,10 @@ module Driveshaft
         match.gsub(/‘|’/, "'")
              .gsub(/“|”/, '"')
       end
+
+      # Remove non-breaking space characters that Google Docs sometimes adds
+      text.gsub!("\u00a0", " ")
+
       data = ::Archieml.load(text)
 
       return {
