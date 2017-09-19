@@ -5,5 +5,3 @@ decrypt:
 
 startserver:
 	puma -t 16:16 -p 3000
-
-

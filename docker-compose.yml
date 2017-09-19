@@ -2,6 +2,6 @@ version: '2'
 services:
   app:
     build: .
-    image: quay.io/washpost/driveshaft:latest
+    image: quay.io/washpost/driveshaft:{{ .Version }}
     ports:
     - "8105:3000"

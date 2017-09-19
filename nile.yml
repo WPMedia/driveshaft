@@ -23,7 +23,7 @@ environments:
     loadBalancers:
     - containerName: app
       containerPort: 3000
-      loadBalancerName: se-graphics-driveshaft-staging
+      loadBalancerName: se-gfx-driveshaft-staging
     serviceName: main
 - name: prod
   type: ecs
@@ -43,9 +43,9 @@ environments:
   - deploymentConfiguration:
       maximumPercent: 200
       minimumHealthyPercent: 50
-    desiredCount: 3
+    desiredCount: 2
     loadBalancers:
     - containerName: app
       containerPort: 3000
-      loadBalancerName: se-graphics-driveshaft-prod
+      loadBalancerName: se-gfx-driveshaft-prod
     serviceName: main

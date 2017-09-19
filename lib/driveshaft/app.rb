@@ -55,6 +55,11 @@ module Driveshaft
       end
     end
 
+    get '/health' do
+      status 200
+      body 'Healthy!'
+    end
+
     get '/:file/?' do
       get_file!
       @destinations.map! do |destination|

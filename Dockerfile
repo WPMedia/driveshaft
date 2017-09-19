@@ -1,14 +1,17 @@
 FROM ruby:2.2.3
 
+LABEL author="John Muyskens"
+LABEL email="john.muyskens@washpost.com"
+
 # Configure bundler
-RUN \
-  bundle config --global frozen 1 && \
+RUN bundle config --global frozen 1 && \
   bundle config --global build.nokogiri --use-system-libraries
 
 # Install cmake
 ENV CMAKE_MAJOR=3.4
 ENV CMAKE_VERSION=3.4.0
 ENV CMAKE_SHASUM256=36c275e5c143f61dc3978f0cf5502a848cfbc09f166a72a2db4427c6f05ab2aa
+
 RUN \
   cd /usr/local && \
   curl -sfLO https://cmake.org/files/v$CMAKE_MAJOR/cmake-$CMAKE_VERSION-Linux-x86_64.tar.gz && \
@@ -18,7 +21,9 @@ RUN \
 
 # Install libssh2 from source
 ENV LIBSSH2_VERSION=1.6.0
+
 RUN gpg --keyserver pgp.mit.edu --recv-keys 279D5C91
+
 RUN \
   cd /usr/local && \
   curl -sfLO http://www.libssh2.org/download/libssh2-$LIBSSH2_VERSION.tar.gz && \
@@ -34,6 +39,7 @@ RUN \
 # Install node.js
 ENV NODE_VERSION=5.1.0
 ENV NODE_SHASUM256=510e7a2e8639a3ea036f5f6a9f7a66037e3acf8d0c953aeac8d093dea7e41d4c
+
 RUN \
   cd /usr/local && \
   curl -sfLO https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.gz && \
@@ -44,23 +50,23 @@ RUN \
 
 # Set the working directory
 RUN mkdir -p /usr/src/app
+
 WORKDIR /usr/src/app
 
 # Install gems
 COPY Gemfile Gemfile.lock /usr/src/app/
-RUN bundle install --jobs `nproc`
-
-# Install npm packages
 COPY package.json /usr/src/app/
-RUN npm install --ignore-scripts
-
-# Install bower dependencies
 COPY bower.json .bowerrc /usr/src/app/
-RUN ./node_modules/bower/bin/bower --allow-root --config.interactive=false install
+
+# Install gems, npm and bower dependencies
+RUN bundle install --jobs `nproc` && \
+    npm install --ignore-scripts && \
+    ./node_modules/bower/bin/bower --allow-root --config.interactive=false install
 
 # Copy the rest of the application source
 COPY . /usr/src/app
 
 # Run the server
 EXPOSE 3000
-CMD make
+
+CMD ["make"]
