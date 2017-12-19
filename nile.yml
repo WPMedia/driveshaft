@@ -7,7 +7,7 @@ environments:
     services:
       app:
         ports:
-          - "8105:3000"
+          - "8105:8000"
         log_driver: awslogs
         log_opt:
           awslogs-group: /nile/siteeng-lincoln/driveshaft/staging
@@ -22,7 +22,7 @@ environments:
     desiredCount: 1
     loadBalancers:
     - containerName: app
-      containerPort: 3000
+      containerPort: 8000
       loadBalancerName: se-gfx-driveshaft-staging
     serviceName: main
 - name: prod
@@ -31,7 +31,7 @@ environments:
     services:
       app:
         ports:
-          - "8106:3000"
+          - "8106:8000"
         log_driver: awslogs
         log_opt:
           awslogs-group: /nile/siteeng-lincoln/driveshaft/prod
@@ -43,9 +43,9 @@ environments:
   - deploymentConfiguration:
       maximumPercent: 200
       minimumHealthyPercent: 50
-    desiredCount: 2
+    desiredCount: 1
     loadBalancers:
     - containerName: app
-      containerPort: 3000
+      containerPort: 8000
       loadBalancerName: se-gfx-driveshaft-prod
     serviceName: main
