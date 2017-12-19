@@ -7,4 +7,5 @@ Dockerfile
 LICENSE
 nile.yml
 docker-compose.yml
+docker-compose-local.yml
 

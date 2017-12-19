@@ -25,6 +25,17 @@ module Driveshaft
 
       data = ::Archieml.load(text)
 
+      # The parser preserves the anchor tags for links in archie, but this breaks on more stories
+      # So, we're going to find the more stories key and reformat the anchor tags to be links
+      # This is BAD CODE but is stop gap so we can publish
+      data.each do |key, values|
+        if key == 'moreStories'
+          values.each do |hash|
+            hash['url'] = Nokogiri::HTML.fragment(hash['url']).text
+          end
+        end
+      end
+
       return {
         body: JSON.dump(data),
         content_type: 'application/json; charset=utf-8'
