@@ -1,7 +1,10 @@
-version: '2'
+version: "2"
 services:
   app:
     build: .
-    image: quay.io/washpost/driveshaft:{{ .Version }}
     ports:
-    - "8105:3000"
+      - "8000:8000"
+    volumes:
+      - .:/usr/src/app
+    env_file:
+      - .env

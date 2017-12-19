@@ -67,6 +67,6 @@ RUN bundle install --jobs `nproc` && \
 COPY . /usr/src/app
 
 # Run the server
-EXPOSE 3000
+EXPOSE 8000
 
 CMD ["make"]

@@ -47,8 +47,8 @@ module Driveshaft
           return convert_node(node) unless node.attributes['href'] && node.attributes['href'].value
 
           href = node.attributes['href'].value
-          if !href.index('?').nil? && parsed_url = CGI.parse(href.split('?')[1])
-            href = parsed_url['q'][0] if parsed_url['q']
+          if !href.index('?').nil? && parsed_url = CGI.parse(href)
+            href = parsed_url.values[0][0] if parsed_url.keys[0] == 'https://www.google.com/url?q'
           end
 
           str = "<a href=\"#{href}\">"
