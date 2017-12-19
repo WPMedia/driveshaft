@@ -6,3 +6,4 @@ node_modules
 services/*
 *.env
 google.json
+docker-compose-local.yml
