@@ -6,6 +6,7 @@ environments:
   override:
     services:
       app:
+        image: quay.io/washpost/driveshaft:{{ .Version }}
         ports:
           - "0:8000"
         log_driver: awslogs
@@ -30,6 +31,7 @@ environments:
   override:
     services:
       app:
+        image: quay.io/washpost/driveshaft:{{ .Version }}
         ports:
           - "0:8000"
         log_driver: awslogs
