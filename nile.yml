@@ -10,6 +10,7 @@ environments:
         scheme: internal
         domain: driveshaft.wpit.nile.works
         parent_domain: wpit.nile.works
+        certificate: arn:aws:acm:us-east-1:766513428554:certificate/07cdc8dd-01fa-44e8-8730-c1e47742acf2
         healthcheck:
           path: /health
   override:
@@ -42,7 +43,7 @@ environments:
         scheme: internal
         domain: driveshaft-staging.wpit.nile.works
         parent_domain: wpit.nile.works
-        certificate: arn:aws:iam::766513428554:server-certificate/star.wpit.nile.works_4-3-2018
+        certificate: arn:aws:acm:us-east-1:766513428554:certificate/07cdc8dd-01fa-44e8-8730-c1e47742acf2
         healthcheck:
           path: /health
   override:
