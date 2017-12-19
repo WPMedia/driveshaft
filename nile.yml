@@ -7,7 +7,7 @@ environments:
     services:
       app:
         ports:
-          - "8105:8000"
+          - "0:8000"
         log_driver: awslogs
         log_opt:
           awslogs-group: /nile/siteeng-lincoln/driveshaft/staging
@@ -31,7 +31,7 @@ environments:
     services:
       app:
         ports:
-          - "8106:8000"
+          - "0:8000"
         log_driver: awslogs
         log_opt:
           awslogs-group: /nile/siteeng-lincoln/driveshaft/prod

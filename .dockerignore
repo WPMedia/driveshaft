@@ -1,8 +1,10 @@
 .gitignore
-CHANGELOG.md
+
+*.md
+*.env
+
 Dockerfile
 LICENSE
-nile.json
-README.md
+nile.yml
+docker-compose.yml
 
-secrets.env
