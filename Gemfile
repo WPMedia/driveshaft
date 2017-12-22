@@ -15,3 +15,8 @@ gem 'google-api-client', '~> 0.8.2'
 
 gem 'nokogiri', '~> 1.6.6.2'
 gem 'archieml', '~> 0.2.0'
+
+group :development do
+    gem 'pry'
+    gem 'rb-readline'
+end
