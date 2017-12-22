@@ -28,7 +28,7 @@ module Driveshaft
       end
 
       return {
-        body: JSON.dump(data),
+        body: JSON.pretty_generate(data),
         content_type: 'application/json; charset=utf-8'
       }
     end
