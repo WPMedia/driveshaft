@@ -2,69 +2,73 @@ name: driveshaft
 namespace: siteeng-lincoln
 type: ecs
 environments:
-- name: prod
-  resources:
-    - vendor: aws
-      resource: simple
-      settings:
-        scheme: internal
-        domain: driveshaft.wpit.nile.works
-        parent_domain: wpit.nile.works
-        certificate: arn:aws:acm:us-east-1:766513428554:certificate/07cdc8dd-01fa-44e8-8730-c1e47742acf2
-        healthcheck:
-          path: /health
-  override:
-    services:
+  - name: prod
+    resources:
+      - vendor: aws
+        resource: simple
+        settings:
+          scheme: internal
+          domain: driveshaft.wpit.nile.works
+          parent_domain: wpit.nile.works
+          certificate: arn:aws:acm:us-east-1:766513428554:certificate/07cdc8dd-01fa-44e8-8730-c1e47742acf2
+          healthcheck:
+            path: /health
+    override:
       app:
         image: quay.io/washpost/driveshaft:{{ .Version }}
         ports:
           - "0:8000"
+        mem_limit: "2G"
+        mem_reservation: "1G"
         log_driver: awslogs
         log_opt:
           awslogs-group: /nile/siteeng-lincoln/driveshaft/prod
           awslogs-region: us-east-1
+          awslogs-stream-prefix: prod
         environment:
-          GOOGLE_APICLIENT_SERVICEACCOUNT: '/usr/src/app/google.json'
-          OPENSSL_ENCRYPTION_PASSWORD: '%{AQECAHhrXauv6cY0k3VFGkUx9UFWdvCyX3a6yFOMm4QCi5o1gwAAAIQwgYEGCSqGSIb3DQEHBqB0MHICAQAwbQYJKoZIhvcNAQcBMB4GCWCGSAFlAwQBLjARBAyDQsRDwqVoHETctuQCARCAQNEZg+uyVgVIXrUKOyzgUfV8J7l99stSZg1zgZKC211xO1ytJ7QAQtkDJaD9avTO32cPaIB6eWpUG8eWp1orOxs=}'
-  services:
-  - deploymentConfiguration:
-      maximumPercent: 200
-      minimumHealthyPercent: 50
-    desiredCount: 1
-    loadBalancers:
-    - containerName: app
-      containerPort: 8000
-    serviceName: main
-- name: staging
-  resources:
-    - vendor: aws
-      resource: simple
-      settings:
-        scheme: internal
-        domain: driveshaft-staging.wpit.nile.works
-        parent_domain: wpit.nile.works
-        certificate: arn:aws:acm:us-east-1:766513428554:certificate/07cdc8dd-01fa-44e8-8730-c1e47742acf2
-        healthcheck:
-          path: /health
-  override:
+          GOOGLE_APICLIENT_SERVICEACCOUNT: "/usr/src/app/google.json"
+          OPENSSL_ENCRYPTION_PASSWORD: "%{AQECAHhrXauv6cY0k3VFGkUx9UFWdvCyX3a6yFOMm4QCi5o1gwAAAIQwgYEGCSqGSIb3DQEHBqB0MHICAQAwbQYJKoZIhvcNAQcBMB4GCWCGSAFlAwQBLjARBAyDQsRDwqVoHETctuQCARCAQNEZg+uyVgVIXrUKOyzgUfV8J7l99stSZg1zgZKC211xO1ytJ7QAQtkDJaD9avTO32cPaIB6eWpUG8eWp1orOxs=}"
     services:
+      - deploymentConfiguration:
+          maximumPercent: 200
+          minimumHealthyPercent: 50
+        desiredCount: 1
+        loadBalancers:
+          - containerName: app
+            containerPort: 8000
+        serviceName: main
+  - name: staging
+    resources:
+      - vendor: aws
+        resource: simple
+        settings:
+          scheme: internal
+          domain: driveshaft-staging.wpit.nile.works
+          parent_domain: wpit.nile.works
+          certificate: arn:aws:acm:us-east-1:766513428554:certificate/07cdc8dd-01fa-44e8-8730-c1e47742acf2
+          healthcheck:
+            path: /health
+    override:
       app:
         image: quay.io/washpost/driveshaft:{{ .Version }}
         ports:
           - "0:8000"
+        mem_limit: "2G"
+        mem_reservation: "1G"
         log_driver: awslogs
         log_opt:
           awslogs-group: /nile/siteeng-lincoln/driveshaft/staging
           awslogs-region: us-east-1
+          awslogs-stream-prefix: staging
         environment:
-          GOOGLE_APICLIENT_SERVICEACCOUNT: '/usr/src/app/google.json'
-          OPENSSL_ENCRYPTION_PASSWORD: '%{AQECAHhrXauv6cY0k3VFGkUx9UFWdvCyX3a6yFOMm4QCi5o1gwAAAIQwgYEGCSqGSIb3DQEHBqB0MHICAQAwbQYJKoZIhvcNAQcBMB4GCWCGSAFlAwQBLjARBAyDQsRDwqVoHETctuQCARCAQNEZg+uyVgVIXrUKOyzgUfV8J7l99stSZg1zgZKC211xO1ytJ7QAQtkDJaD9avTO32cPaIB6eWpUG8eWp1orOxs=}'
-  services:
-  - deploymentConfiguration:
-      maximumPercent: 200
-      minimumHealthyPercent: 50
-    desiredCount: 1
-    loadBalancers:
-    - containerName: app
-      containerPort: 8000
-    serviceName: main
+          GOOGLE_APICLIENT_SERVICEACCOUNT: "/usr/src/app/google.json"
+          OPENSSL_ENCRYPTION_PASSWORD: "%{AQECAHhrXauv6cY0k3VFGkUx9UFWdvCyX3a6yFOMm4QCi5o1gwAAAIQwgYEGCSqGSIb3DQEHBqB0MHICAQAwbQYJKoZIhvcNAQcBMB4GCWCGSAFlAwQBLjARBAyDQsRDwqVoHETctuQCARCAQNEZg+uyVgVIXrUKOyzgUfV8J7l99stSZg1zgZKC211xO1ytJ7QAQtkDJaD9avTO32cPaIB6eWpUG8eWp1orOxs=}"
+    services:
+      - deploymentConfiguration:
+          maximumPercent: 200
+          minimumHealthyPercent: 50
+        desiredCount: 1
+        loadBalancers:
+          - containerName: app
+            containerPort: 8000
+        serviceName: main
