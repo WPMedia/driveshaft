@@ -18,8 +18,8 @@ environments:
         image: quay.io/washpost/driveshaft:{{ .Version }}
         ports:
           - "0:8000"
-        mem_limit: "2G"
-        mem_reservation: "1G"
+        mem_limit: "1G"
+        mem_reservation: "512M"
         log_driver: awslogs
         log_opt:
           awslogs-group: /nile/siteeng-lincoln/driveshaft/prod
@@ -53,8 +53,8 @@ environments:
         image: quay.io/washpost/driveshaft:{{ .Version }}
         ports:
           - "0:8000"
-        mem_limit: "2G"
-        mem_reservation: "1G"
+        mem_limit: "1G"
+        mem_reservation: "512M"
         log_driver: awslogs
         log_opt:
           awslogs-group: /nile/siteeng-lincoln/driveshaft/staging
