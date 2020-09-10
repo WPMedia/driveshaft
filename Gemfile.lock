@@ -67,7 +67,7 @@ GEM
       rack
     rack-test (0.6.3)
       rack (>= 1.0)
-    rake (10.3.2)
+    rake (12.3.3)
     rb-readline (0.5.5)
     retriable (1.4.1)
     signet (0.6.0)
@@ -108,7 +108,7 @@ DEPENDENCIES
   puma
   rack (~> 1.6.1)
   rack-flash3 (~> 1.0.4)
-  rake (~> 10.3.2)
+  rake (~> 12.3.3)
   rb-readline
   sinatra (~> 1.4.6)
   sinatra-contrib (~> 1.4.2)

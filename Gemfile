@@ -3,7 +3,7 @@ source 'http://rubygems.org'
 gem 'thin', '~> 1.6.2'
 gem 'rack', '~> 1.6.1'
 gem 'rack-flash3', '~> 1.0.4'
-gem 'rake', '~> 10.3.2'
+gem 'rake', '~> 12.3.3'
 gem 'puma'
 
 gem 'sinatra', '~> 1.4.6'
