@@ -13,7 +13,7 @@ gem 'aws-sdk', '~> 2.0.23', :require => false
 
 gem 'google-api-client', '~> 0.8.2'
 
-gem 'nokogiri', '~> 1.6.6.2'
+gem 'nokogiri', '~> 1.10.10'
 gem 'archieml', '~> 0.2.0'
 
 group :development do
